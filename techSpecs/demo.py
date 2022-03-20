@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def search_product(product = 'iPhone 13', category = 'smartphone'):
+def search_product(product, category):
     if product!= '' and category!= '':
         url = "https://apis.dashboard.techspecs.io/cs6vk2qrkhg626ia/api/product/search?query="+product
         payload = {"category": category}
