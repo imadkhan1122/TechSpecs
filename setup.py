@@ -14,8 +14,7 @@ setup_args = dict(
     author='Imad Ud Din',
     author_email='imadyousafzai0@gmail.com',
     keywords=['TechSpecAPI'],
-    url='https://github.com/imadkhan1122/TechSpecs',
-    download_url='https://pypi.org/project/TechSpecs/'
+    url='https://github.com/imadkhan1122/TechSpecs'
 )
 
 install_requires = [
