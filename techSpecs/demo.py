@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def search_product(product, category):
+def search_product(product = 'iPhone 13', category = 'smartphone'):
     if product!= '' and category!= '':
         url = "https://apis.dashboard.techspecs.io/cs6vk2qrkhg626ia/api/product/search?query="+product
         payload = {"category": category}
@@ -13,6 +13,9 @@ def search_product(product, category):
         }
         
         response = requests.request("POST", url, json=payload, headers=headers)
+        
+        while response.status_code != 200:
+            response = requests.request("POST", url, json=payload, headers=headers)
         
         result = json.loads(response.text)
         
@@ -29,6 +32,8 @@ def product_details(prod_id):
             "x-blobr-key": "EAJIGl4C5ZQTkohu8DNlQoXCYCWGNP42"
         }
         response = requests.request("GET", url, headers=headers)
+        while response.status_code != 200:
+            response = requests.request("GET", url, headers=headers)
         result = json.loads(response.text)
         return result["data"]['product']
     else:
@@ -43,7 +48,8 @@ def all_brands():
     }
     
     response = requests.request("GET", url, headers=headers)
-    
+    while response.status_code != 200:
+        response = requests.request("GET", url, headers=headers)
     result = json.loads(response.text)
     
     return result["data"]['brands']
@@ -57,7 +63,8 @@ def all_categories():
     }
     
     response = requests.request("GET", url, headers=headers)
-
+    while response.status_code != 200:
+        response = requests.request("GET", url, headers=headers)
     result = json.loads(response.text)
     
     return result['data']['Category'][1]['source_engines']
@@ -78,7 +85,8 @@ def prod_by_brand_category(brand, category):
         }
         
         response = requests.request("POST", url, json=payload, headers=headers)
-    
+        while response.status_code != 200:
+            response = requests.request("POST", url, json=payload, headers=headers)
         result = json.loads(response.text)
         
         if result['data']["product"] != []:
