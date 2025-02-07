@@ -12,10 +12,10 @@ def search_product(product, category):
             "Content-Type": "application/json"
         }
         
-        response = requests.request("POST", url, json=payload, headers=headers)
+        response = requests.request("POST", url, json=payload, headers=headers, timeout=60)
         
         while response.status_code != 200:
-            response = requests.request("POST", url, json=payload, headers=headers)
+            response = requests.request("POST", url, json=payload, headers=headers, timeout=60)
         
         result = json.loads(response.text)
         
@@ -31,9 +31,9 @@ def product_details(prod_id):
             "Accept-Encoding": "gzip, deflate",
             "x-blobr-key": "EAJIGl4C5ZQTkohu8DNlQoXCYCWGNP42"
         }
-        response = requests.request("GET", url, headers=headers)
+        response = requests.request("GET", url, headers=headers, timeout=60)
         while response.status_code != 200:
-            response = requests.request("GET", url, headers=headers)
+            response = requests.request("GET", url, headers=headers, timeout=60)
         result = json.loads(response.text)
         return result["data"]['product']
     else:
@@ -47,9 +47,9 @@ def all_brands():
         "x-blobr-key": "EAJIGl4C5ZQTkohu8DNlQoXCYCWGNP42"
     }
     
-    response = requests.request("GET", url, headers=headers)
+    response = requests.request("GET", url, headers=headers, timeout=60)
     while response.status_code != 200:
-        response = requests.request("GET", url, headers=headers)
+        response = requests.request("GET", url, headers=headers, timeout=60)
     result = json.loads(response.text)
     
     return result["data"]['brands']
@@ -62,9 +62,9 @@ def all_categories():
         "x-blobr-key": "EAJIGl4C5ZQTkohu8DNlQoXCYCWGNP42"
     }
     
-    response = requests.request("GET", url, headers=headers)
+    response = requests.request("GET", url, headers=headers, timeout=60)
     while response.status_code != 200:
-        response = requests.request("GET", url, headers=headers)
+        response = requests.request("GET", url, headers=headers, timeout=60)
     result = json.loads(response.text)
     
     return result['data']['Category'][1]['source_engines']
@@ -84,9 +84,9 @@ def prod_by_brand_category(brand, category):
             "Content-Type": "application/json"
         }
         
-        response = requests.request("POST", url, json=payload, headers=headers)
+        response = requests.request("POST", url, json=payload, headers=headers, timeout=60)
         while response.status_code != 200:
-            response = requests.request("POST", url, json=payload, headers=headers)
+            response = requests.request("POST", url, json=payload, headers=headers, timeout=60)
         result = json.loads(response.text)
         
         if result['data']["product"] != []:
